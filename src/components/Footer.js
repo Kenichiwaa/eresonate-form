@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const FooterContainer = styled.div`
@@ -32,7 +33,7 @@ const LinkContainer = styled.div`
     opacity: 0.6;
     color: white;
     margin: auto;
-    padding-bottom: 1em;
+    line-height: 2em;
   }
 
   .column:nth-of-type(3) {
@@ -73,12 +74,22 @@ const Footer = () => {
       </SocialIconsContainer>
       <LinkContainer className="ui equal width grid">
         <div className="column">
-          <div className="ui link">Claim Your Venue</div>
-          <div className="ui link">Venue Log In</div>
+          <Link to="/" className="ui link">
+            Claim Your Venue
+          </Link>
+          <br />
+          <Link to="/" className="ui link">
+            Venue Log In
+          </Link>
         </div>
         <div className="column">
-          <div className="ui link">Terms and Condition</div>
-          <div className="ui link">Privacy Policy</div>
+          <Link to="/" className="ui link">
+            Terms and Condition
+          </Link>
+          <br />
+          <Link to="/" className="ui link">
+            Privacy Policy
+          </Link>
         </div>
         <div className="column">
           <StyledButton className="ui button">Default</StyledButton>
