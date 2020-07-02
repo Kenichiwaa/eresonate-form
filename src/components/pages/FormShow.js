@@ -1,7 +1,13 @@
 import React from "react";
 import { Field, reduxForm } from "redux-form";
 import { connect } from "react-redux";
+import styled from "styled-components";
 import { createForm } from "../../actions";
+
+const FormContainer = styled.div`
+  max-width: 350px;
+  margin: auto;
+`;
 
 class FormShow extends React.Component {
   renderError({ error, touched }) {
@@ -21,7 +27,7 @@ class FormShow extends React.Component {
     return (
       <div className={className}>
         <label>{label}</label>
-        <input {...input} autoComplete="off" />
+        <input {...input} />
         {this.renderError(meta)}
       </div>
     );
@@ -32,30 +38,60 @@ class FormShow extends React.Component {
   };
   render() {
     return (
-      <form
-        onSubmit={this.props.handleSubmit(this.onSubmit)}
-        className="ui form error"
-      >
-        <Field name="title" component={this.renderInput} label="Enter Title" />
-        <Field
-          name="description"
-          component={this.renderInput}
-          label="Enter Description"
-        />
-        <button className="ui button primary">Submit</button>
-      </form>
+      <FormContainer>
+        <h2>Report a Problem</h2>
+        <form
+          onSubmit={this.props.handleSubmit(this.onSubmit)}
+          className="ui form error"
+        >
+          <Field
+            name="name"
+            component={this.renderInput}
+            label="Your Name"
+            type="text"
+          />
+          <Field
+            name="number"
+            component={this.renderInput}
+            label="Phone Number"
+            type="tel"
+            pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+          />
+          <Field
+            name="email"
+            component={this.renderInput}
+            label="Email"
+            type="email"
+          />
+          <Field
+            name="message"
+            component={this.renderInput}
+            label="Message"
+            type="text"
+          />
+          <button className="ui button primary fluid">Submit</button>
+        </form>
+      </FormContainer>
     );
   }
 }
 
 const validate = (formValues) => {
   const errors = {};
-  if (!formValues.title) {
-    errors.title = "You must enter a valid title";
+  if (!formValues.name) {
+    errors.name = "You must enter a valid name";
   }
 
-  if (!formValues.description) {
-    errors.description = "You must enter a valid description";
+  if (!formValues.number) {
+    errors.number = "You must enter a valid phone number";
+  }
+
+  if (!formValues.email) {
+    errors.email = "You must enter a valid email";
+  }
+
+  if (!formValues.message) {
+    errors.message = "You must write a message";
   }
   return errors;
 };
