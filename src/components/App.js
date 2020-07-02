@@ -14,7 +14,7 @@ const App = () => {
       <Router history={history}>
         <Header />
         <Route path="/" exact component={FormShow} />
-        <Route path="/forms/list" exact component={FormList} />
+        <Route path="/form/list" exact component={FormList} />
         <Footer />
       </Router>
     </div>

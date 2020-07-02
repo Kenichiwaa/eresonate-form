@@ -3,16 +3,17 @@ import streams from "../apis/streams";
 
 import history from "../history";
 
-export const createForm = (formValues) => async (dispatch, getState) => {
-  const { userId } = getState().auth;
-  const response = await streams.post("/form", { ...formValues, userId });
+export const createForm = (formValues) => async (dispatch) => {
+  const response = await streams.post("/send_report", {
+    ...formValues,
+  });
 
   dispatch({ type: CREATE_FORM, payload: response.data });
   history.push("/");
 };
 
 export const fetchStreams = () => async (dispatch) => {
-  const response = await streams.get("/form");
+  const response = await streams.get("/send_report");
 
   dispatch({ type: FETCH_FORMS, payload: response.data });
 };
