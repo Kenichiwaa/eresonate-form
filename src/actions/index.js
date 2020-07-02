@@ -9,7 +9,8 @@ export const createForm = (formValues) => async (dispatch) => {
   });
 
   dispatch({ type: CREATE_FORM, payload: response.data });
-  history.push("/");
+  alert(JSON.stringify(response.data));
+  history.push("/thanks");
 };
 
 export const fetchStreams = () => async (dispatch) => {

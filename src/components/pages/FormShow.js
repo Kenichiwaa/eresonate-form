@@ -56,6 +56,7 @@ const RightBgImg = styled.img`
     display: none;
   }
 `;
+
 const StyledField = styled(Field)`
   &.ui.form input {
     background-color: pink;
@@ -74,8 +75,6 @@ class FormShow extends React.Component {
   }
 
   renderInput = ({ input, label, meta, textarea }) => {
-    console.log(meta);
-    console.log(meta.touched);
     const className = `field ${meta.error && meta.touched ? "error" : ""}`;
     return (
       <div className={className}>
@@ -89,6 +88,7 @@ class FormShow extends React.Component {
   onSubmit = (formValues) => {
     this.props.createForm(formValues);
   };
+
   render() {
     return (
       <div>
