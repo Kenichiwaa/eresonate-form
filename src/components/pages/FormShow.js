@@ -18,6 +18,7 @@ const FormContainer = styled.div`
   }
 
   h2 {
+    font-family: inherit;
     text-align: center;
     font-weight: 100;
     padding-bottom: 20px;
@@ -40,6 +41,9 @@ const LeftBgImg = styled.img`
   z-index: 0;
   width: 355px;
   bottom: 192px;
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
 `;
 
 const RightBgImg = styled.img`
@@ -48,6 +52,9 @@ const RightBgImg = styled.img`
   width: 334px;
   top: 80px;
   right: 0px;
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
 `;
 const StyledField = styled(Field)`
   &.ui.form input {

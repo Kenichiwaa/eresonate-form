@@ -7,9 +7,8 @@ const FooterContainer = styled.div`
   bottom: 0;
   width: 100%;
   text-align: center;
-  height: 194px;
   background-color: #292c32;
-  padding: 50px 0;
+  padding: 50px 0 30px 0;
   margin-top: 50px;
 `;
 
@@ -31,16 +30,36 @@ const LinkContainer = styled.div`
 
   .link {
     opacity: 0.6;
-    font-family: Rubik;
-    font-size: 14px;
-    font-weight: normal;
-    font-stretch: normal;
-    font-style: normal;
-    letter-spacing: normal;
-    text-align: center;
     color: white;
     margin: auto;
     padding-bottom: 1em;
+  }
+
+  .column:nth-of-type(3) {
+    @media screen and (max-width: 768px) {
+      display: none !important;
+    }
+  }
+`;
+
+const StyledButton = styled.div`
+  &.ui.button {
+    width: 165px;
+    height: 40px;
+    border-radius: 8px;
+    color: #486ea8;
+    background-color: #292c32;
+    border: 1px solid gray;
+    text-align: left;
+    font-family: inherit;
+  }
+`;
+
+const MobileButtonContainer = styled.div`
+  display: none;
+
+  @media screen and (max-width: 768px) {
+    display: inline;
   }
 `;
 
@@ -62,9 +81,12 @@ const Footer = () => {
           <div className="ui link">Privacy Policy</div>
         </div>
         <div className="column">
-          <div className="ui link button">Default</div>
+          <StyledButton className="ui button">Default</StyledButton>
         </div>
       </LinkContainer>
+      <MobileButtonContainer className="column">
+        <StyledButton className="ui button">Default</StyledButton>
+      </MobileButtonContainer>
     </FooterContainer>
   );
 };

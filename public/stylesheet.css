@@ -1,3 +1,9 @@
+@font-face {
+    font-family: Rubik-Regular;
+    src: url(fonts/Rubik-Regular.ttf);
+}
+
 body {
     background-color: #191b1e;
+    font-family: Rubik-Regular;
 }
