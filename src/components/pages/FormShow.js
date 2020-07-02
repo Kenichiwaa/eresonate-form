@@ -3,10 +3,56 @@ import { Field, reduxForm } from "redux-form";
 import { connect } from "react-redux";
 import styled from "styled-components";
 import { createForm } from "../../actions";
+import imageLeft from "../../images/left-bg-image.png";
+import imageRight from "../../images/right-bg-image.png";
 
 const FormContainer = styled.div`
   max-width: 350px;
   margin: auto;
+  padding-top: 40px;
+  margin-bottom: 250px;
+
+  .ui.form .field > label,
+  h2 {
+    color: white;
+  }
+
+  h2 {
+    text-align: center;
+    font-weight: 100;
+    padding-bottom: 20px;
+  }
+
+  input[name],
+  textarea[name="message"] {
+    background-color: #191b1e !important;
+    border-color: gray !important;
+    color: white !important;
+  }
+
+  textarea[name="message"] {
+    height: 100px;
+  }
+`;
+
+const LeftBgImg = styled.img`
+  position: fixed;
+  z-index: 0;
+  width: 355px;
+  bottom: 192px;
+`;
+
+const RightBgImg = styled.img`
+  position: absolute;
+  z-index: 0;
+  width: 334px;
+  top: 80px;
+  right: 0px;
+`;
+const StyledField = styled(Field)`
+  &.ui.form input {
+    background-color: pink;
+  }
 `;
 
 class FormShow extends React.Component {
@@ -20,14 +66,14 @@ class FormShow extends React.Component {
     }
   }
 
-  renderInput = ({ input, label, meta }) => {
+  renderInput = ({ input, label, meta, textarea }) => {
     console.log(meta);
     console.log(meta.touched);
     const className = `field ${meta.error && meta.touched ? "error" : ""}`;
     return (
       <div className={className}>
         <label>{label}</label>
-        <input {...input} />
+        {textarea ? <textarea {...input} /> : <input {...input} />}
         {this.renderError(meta)}
       </div>
     );
@@ -38,40 +84,47 @@ class FormShow extends React.Component {
   };
   render() {
     return (
-      <FormContainer>
-        <h2>Report a Problem</h2>
-        <form
-          onSubmit={this.props.handleSubmit(this.onSubmit)}
-          className="ui form error"
-        >
-          <Field
-            name="name"
-            component={this.renderInput}
-            label="Your Name"
-            type="text"
-          />
-          <Field
-            name="number"
-            component={this.renderInput}
-            label="Phone Number"
-            type="tel"
-            pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-          />
-          <Field
-            name="email"
-            component={this.renderInput}
-            label="Email"
-            type="email"
-          />
-          <Field
-            name="message"
-            component={this.renderInput}
-            label="Message"
-            type="text"
-          />
-          <button className="ui button primary fluid">Submit</button>
-        </form>
-      </FormContainer>
+      <div>
+        <LeftBgImg src={imageLeft} />
+        <RightBgImg src={imageRight} />
+
+        <FormContainer>
+          <h2>Report a Problem</h2>
+          <form
+            onSubmit={this.props.handleSubmit(this.onSubmit)}
+            className="ui form error"
+          >
+            <StyledField
+              name="name"
+              component={this.renderInput}
+              label="Your Name"
+              type="text"
+            />
+            <Field
+              name="number"
+              component={this.renderInput}
+              label="Phone Number"
+              type="tel"
+              pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+            />
+            <Field
+              name="email"
+              component={this.renderInput}
+              label="Email"
+              type="email"
+            />
+            <Field
+              className="message"
+              name="message"
+              component={this.renderInput}
+              label="Message"
+              type="text"
+              textarea="true"
+            />
+            <button className="ui button primary fluid">Submit</button>
+          </form>
+        </FormContainer>
+      </div>
     );
   }
 }

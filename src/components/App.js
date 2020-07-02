@@ -10,7 +10,7 @@ import history from "../history";
 
 const App = () => {
   return (
-    <div className="ui container">
+    <div className="ui">
       <Router history={history}>
         <Header />
         <Route path="/" exact component={FormShow} />
