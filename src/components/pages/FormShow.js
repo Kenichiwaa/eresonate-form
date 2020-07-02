@@ -10,7 +10,7 @@ const FormContainer = styled.div`
   max-width: 350px;
   margin: auto;
   padding-top: 40px;
-  margin-bottom: 250px;
+  margin-bottom: 300px;
 
   .ui.form .field > label,
   h2 {
@@ -147,7 +147,11 @@ const validate = (formValues) => {
   }
 
   if (!formValues.email) {
-    errors.email = "You must enter a valid email";
+    errors.email = "Required";
+  } else if (
+    !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(formValues.email)
+  ) {
+    errors.email = "Invalid email address";
   }
 
   if (!formValues.message) {

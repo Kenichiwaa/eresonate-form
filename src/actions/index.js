@@ -10,6 +10,7 @@ export const createForm = (formValues) => async (dispatch) => {
 
   dispatch({ type: CREATE_FORM, payload: response.data });
   alert(JSON.stringify(response.data));
+  console.log(JSON.stringify(response.data));
   history.push("/thanks");
 };
 
